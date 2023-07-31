@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sample-node-app
+  name: sample-node-app  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-node-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sample-node-app           
+    spec:     
+      containers:
+      - image: 647824729885.dkr.ecr.ap-south-1.amazonaws.com/samplerepo:0.01
+        name: sample-node-app
+        imagePullPolicy: IfNotPresent 
+        resources: {}
+        ports:
+          - containerPort: 5001
+            protocol: TCP
+      imagePullSecrets:
+      - name: awsecr-cred            
+status: {}
